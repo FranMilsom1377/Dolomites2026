@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dolomites & Austria — April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --stone: #f5f2ed;
+    --cream: #faf8f4;
+    --bark: #3d2e1e;
+    --pine: #2a3d2e;
+    --glacier: #7a9fad;
+    --mist: #c8d8dc;
+    --gold: #b8924a;
+    --rust: #8b4a2a;
+    --snow: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--stone);
+    color: var(--bark);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative;
+    overflow: hidden;
+    background: var(--pine);
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85');
+    background-size: cover;
+    background-position: center 40%;
+    opacity: 0.55;
+  }
+
+  .hero-grain {
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(42,61,46,0.3) 0%, rgba(42,61,46,0.1) 50%, rgba(42,61,46,0.8) 100%);
+  }
+
+  .hero-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 40px 40px;
+    animation: fadeUp 1.2s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 24px;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.95;
+    color: var(--snow);
+    margin-bottom: 8px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--mist);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: var(--mist);
+    margin-bottom: 40px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 40px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .hero-meta span { display: flex; align-items: center; gap: 8px; }
+
+  .hero-scroll {
+    position: relative;
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.4));
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* ── TRIP INFO STRIP ── */
+  .info-strip {
+    background: var(--bark);
+    color: var(--cream);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+  }
+
+  .info-cell {
+    padding: 28px 32px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    animation: fadeUp 0.8s ease forwards;
+    opacity: 0;
+  }
+
+  .info-cell:last-child { border-right: none; }
+
+  .info-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .info-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--cream);
+  }
+
+  /* ── SECTION STRUCTURE ── */
+  .section {
+    padding: 80px 5vw;
+  }
+
+  .section-alt {
+    background: var(--cream);
+  }
+
+  .section-dark {
+    background: var(--pine);
+    color: var(--cream);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+
+  .day-badge {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .day-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1;
+  }
+
+  .section-dark .day-title { color: var(--snow); }
+
+  .day-date {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--glacier);
+    margin-left: auto;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px 0 30px;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    display: grid;
+    gap: 0;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), var(--glacier), transparent);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    padding: 16px 0;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 22px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--stone);
+  }
+
+  .section-alt .timeline-item::before { border-color: var(--cream); }
+  .section-dark .timeline-item::before { border-color: var(--pine); background: var(--glacier); }
+
+  .timeline-time {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    padding-top: 3px;
+  }
+
+  .section-dark .timeline-time { color: var(--glacier); }
+
+  .timeline-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  .section-dark .timeline-label { color: var(--snow); }
+
+  .timeline-note {
+    font-size: 0.78rem;
+    color: #7a6a5a;
+    line-height: 1.6;
+  }
+
+  .section-dark .timeline-note { color: var(--mist); opacity: 0.8; }
+
+  .map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--glacier);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .map-link:hover { border-color: var(--glacier); }
+  .map-link svg { flex-shrink: 0; }
+
+  /* ── PLACE LINKS ── */
+  .place-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 1px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .place-link:hover {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+  .section-dark .place-link {
+    border-bottom-color: var(--glacier);
+  }
+  .section-dark .place-link:hover {
+    color: var(--glacier);
+    border-color: var(--glacier);
+  }
+
+  /* ── PHOTO GRID ── */
+  .photo-grid {
+    display: grid;
+    gap: 12px;
+    margin: 30px 0;
+  }
+
+  .photo-grid-2 { grid-template-columns: 1fr 1fr; }
+  .photo-grid-3 { grid-template-columns: 2fr 1fr 1fr; }
+  .photo-grid-2-1 { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+
+  .photo-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+
+  .photo-card:hover img { transform: scale(1.03); }
+
+  .photo-card-tall { min-height: 380px; }
+  .photo-card-med { min-height: 240px; }
+  .photo-card-short { min-height: 180px; }
+  .photo-card-wide { min-height: 320px; }
+
+  .photo-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 16px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.5));
+    color: white;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .photo-card:hover .photo-caption { opacity: 1; }
+
+  /* ── HOTEL CARD ── */
+  .hotel-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: 2px;
+    overflow: hidden;
+    margin: 30px 0;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+  }
+
+  .hotel-image {
+    position: relative;
+    min-height: 360px;
+    overflow: hidden;
+  }
+
+  .hotel-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s;
+  }
+
+  .hotel-card:hover .hotel-image img { transform: scale(1.04); }
+
+  .hotel-info {
+    background: var(--bark);
+    color: var(--cream);
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .hotel-eyebrow {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .hotel-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    color: var(--snow);
+  }
+
+  .hotel-address {
+    font-size: 0.75rem;
+    color: var(--mist);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .hotel-detail {
+    display: flex;
+    gap: 8px;
+    font-size: 0.72rem;
+    color: var(--mist);
+    margin-bottom: 8px;
+  }
+
+  .hotel-detail strong {
+    color: var(--gold);
+    font-weight: 400;
+    min-width: 90px;
+  }
+
+  .hotel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 10px 20px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: all 0.25s;
+    align-self: flex-start;
+  }
+
+  .hotel-link:hover {
+    background: var(--gold);
+    color: var(--bark);
+  }
+
+  /* ── LOGISTICS BAR ── */
+  .logistics {
+    background: linear-gradient(135deg, var(--glacier) 0%, var(--pine) 100%);
+    padding: 50px 5vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+  }
+
+  .logistics-item { color: var(--snow); }
+
+  .logistics-icon {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+  }
+
+  .logistics-title {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 8px;
+  }
+
+  .logistics-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--snow);
+    margin-bottom: 4px;
+  }
+
+  .logistics-sub {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* ── HIGHLIGHTS ── */
+  .highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1px;
+    background: rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.06);
+    margin: 40px 0;
+  }
+
+  .highlight-cell {
+    background: var(--cream);
+    padding: 28px 24px;
+    text-align: center;
+  }
+
+  .section-dark .highlights { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.06); }
+  .section-dark .highlight-cell { background: rgba(255,255,255,0.04); }
+
+  .highlight-icon { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+
+  .highlight-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--bark);
+  }
+
+  .section-dark .highlight-text { color: var(--mist); }
+
+  /* ── ROUTE MAP LINK ── */
+  .route-banner {
+    background: var(--gold);
+    padding: 20px 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    transition: background 0.25s;
+  }
+
+  .route-banner:hover { background: #a07a38; }
+
+  .route-banner-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--bark);
+  }
+
+  .route-banner-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bark);
+    opacity: 0.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--bark);
+    color: var(--mist);
+    text-align: center;
+    padding: 50px;
+  }
+
+  footer .title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-style: italic;
+    color: var(--snow);
+    margin-bottom: 12px;
+  }
+
+  footer p {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hotel-card { grid-template-columns: 1fr; }
+    .hotel-image { min-height: 260px; }
+    .photo-grid-3 { grid-template-columns: 1fr 1fr; }
+    .hero-meta { flex-direction: column; gap: 12px; align-items: center; }
+    .section-header { flex-wrap: wrap; }
+    .day-date { margin-left: 0; }
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: normal;
+    transition: background 0.3s;
+  }
+
+  nav.scrolled {
+    background: rgba(61,46,30,0.95);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.1em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">Dolomites 2026</div>
+  <ul class="nav-links">
+    <li><a href="#day1">Day 1</a></li>
+    <li><a href="#day2">Day 2</a></li>
+    <li><a href="#day3">Day 3</a></li>
+    <li><a href="#day4">Day 4</a></li>
+    <li><a href="#day5">Day 5</a></li>
+    <li><a href="#day6">Day 6</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">14 — 19 April 2026</div>
+    <h1 class="hero-title">The <em>Dolomites</em><br>&amp; Austria</h1>
+    <p class="hero-subtitle">Italy · South Tyrol · Ötztal</p>
+    <div class="hero-meta">
+      <span>✈ London Gatwick → Verona</span>
+      <span>🏔 6 Days</span>
+      <span>👥 Fran &amp; Rauikau</span>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div></div>
+</section>
+
+<!-- LOGISTICS -->
+<div class="logistics">
+  <div class="logistics-item reveal">
+    <div class="logistics-icon">✈</div>
+    <div class="logistics-title">Flight Out</div>
+    <div class="logistics-value">BA2588 — 07:50 LGW</div>
+    <div class="logistics-sub">Arrives Verona (VRN) 10:55 · Ref: LGWY2D</div>
+  </div>
+  <div class="logistics-item reveal">
+    <div class="logistics-icon">🚗</div>
+    <div class="logistics-title">Car Rental</div>
+    <div class="logistics-value">Alamo — Verona Airport</div>
+    <div class="logistics-sub">Ref: 711742790</div>
+  </div>
+  <div class="logistics-item reveal">
+    <div class="logistics-icon">🏨</div>
+    <div class="logistics-title">Night 1</div>
+    <div class="logistics-value">Parkhotel Mondschein</div>
+    <div class="logistics-sub">Bolzano, South Tyrol · Ref: 647918887</div>
+  </div>
+  <div class="logistics-item reveal">
+    <div class="logistics-icon">🌲</div>
+    <div class="logistics-title">Nights 2–3</div>
+    <div class="logistics-value">Forestis Dolomites</div>
+    <div class="logistics-sub">Bressanone — mountain spa retreat</div>
+  </div>
+  <div class="logistics-item reveal">
+    <div class="logistics-icon">🏔</div>
+    <div class="logistics-title">Nights 4–5</div>
+    <div class="logistics-value">Dolomitenhütte</div>
+    <div class="logistics-sub">Ötztal, Austria — alpine escape</div>
+  </div>
+</div>
+
+<!-- DAY 1 -->
+<section class="section" id="day1">
+  <div class="section-header reveal">
+    <div>
+      <div class="day-badge">Day 1 · Tuesday 14 April</div>
+      <h2 class="day-title">Arrival & Lake Garda</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="day-date">London → Verona → Bolzano</div>
+  </div>
+
+  <div class="photo-grid photo-grid-3 reveal">
+    <div class="photo-card photo-card-tall">
+      <img src="https://images.unsplash.com/photo-1555993539-1732b0258235?w=800&q=80" alt="Lake Garda">
+      <div class="photo-caption">Lake Garda</div>
+    </div>
+    <div class="photo-card photo-card-med">
+      <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80" alt="Lazise">
+      <div class="photo-caption">Lazise Waterfront</div>
+    </div>
+    <div class="photo-card photo-card-med">
+      <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80" alt="Gelato">
+      <div class="photo-caption">Gelateria Coco Lina</div>
+    </div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-time">07:50</div>
+      <div>
+        <div class="timeline-label">Depart Gatwick — BA2588</div>
+        <div class="timeline-note">2hr 5min direct flight · Confirmation: LGWY2D</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">10:55</div>
+      <div>
+        <div class="timeline-label">Arrive Verona (VRN) · Collect Alamo hire car</div>
+        <div class="timeline-note">Ref: 711742790 · Pick up at Verona Airport</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">12:30</div>
+      <div>
+        <div class="timeline-label"><a class="place-link" href="https://maps.app.goo.gl/KHbj5HsN35xYgdfq5" target="_blank">Lake Garda — Lazise</a></div>
+        <div class="timeline-note">Stroll the lakeside promenade · Pick up fresh bread from <a class="place-link" href="https://maps.google.com/?q=Panificio+Daniele+Lazise+Garda" target="_blank">Panificio Daniele</a> · Gelato at <a class="place-link" href="https://maps.google.com/?q=Gelateria+Angelina+Lazise+Corso+Ospedale+27" target="_blank">Gelateria Coco Lina</a></div>
+        <a class="map-link" href="https://maps.app.goo.gl/KHbj5HsN35xYgdfq5" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">15:00</div>
+      <div>
+        <div class="timeline-label">Drive to Bolzano (~1.5 hrs)</div>
+        <div class="timeline-note">Through the Adige valley</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">16:30</div>
+      <div>
+        <div class="timeline-label">Check-in · <a class="place-link" href="https://maps.google.com/?q=Parkhotel+Mondschein+Piave+15+Bolzano" target="_blank">Parkhotel Mondschein</a></div>
+        <div class="timeline-note">Piave 15, 39100 Bolzano · Ref: 647918887</div>
+        <a class="map-link" href="https://maps.app.goo.gl/mondschein" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">17:30</div>
+      <div>
+        <div class="timeline-label"><a class="place-link" href="https://maps.google.com/?q=Bolzano+Old+Town+Walther+Platz" target="_blank">Stroll the Bolzano Old Town</a></div>
+        <div class="timeline-note">Gothic arcades, the Walther Platz, <a class="place-link" href="https://maps.google.com/?q=Museo+Archeologico+Ötzi+Bolzano" target="_blank">Ötzi the Iceman Museum</a> nearby</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">19:30</div>
+      <div>
+        <div class="timeline-label">Dinner at <a class="place-link" href="https://www.voegele.it/en/" target="_blank">Vogele</a></div>
+        <div class="timeline-note">Classic South Tyrolean cuisine · <a class="place-link" href="https://maps.google.com/?q=Wirtshaus+Vögele+Goethestrasse+3+Bolzano" target="_blank">Goethestr. 3, Bolzano</a> · Michelin Bib Gourmand</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOTEL 1 -->
+<section class="section section-alt" style="padding-top:0">
+  <div class="hotel-card reveal">
+    <div class="hotel-image">
+      <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=85" alt="Parkhotel Mondschein">
+    </div>
+    <div class="hotel-info">
+      <div class="hotel-eyebrow">Night 1 · Design Hotel</div>
+      <h3 class="hotel-name">Parkhotel Mondschein</h3>
+      <p class="hotel-address">Piave 15, 39100 Bolzano, South Tyrol, Italy</p>
+      <div class="hotel-detail"><strong>Check-in</strong> 16:30</div>
+      <div class="hotel-detail"><strong>Confirmation</strong> 647918887</div>
+      <div class="hotel-detail"><strong>Collection</strong> Member of Design Hotels</div>
+      <div style="display:flex; gap: 12px; flex-wrap: wrap; margin-top: 24px;">
+        <a class="hotel-link" style="margin-top:0" href="https://www.parkhotel-mondschein.com/en/" target="_blank">Hotel Website →</a>
+        <a class="hotel-link" style="margin-top:0" href="https://maps.google.com/?q=Parkhotel+Mondschein+Bolzano" target="_blank">View on Map →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 2 -->
+<section class="section section-dark" id="day2">
+  <div class="section-header reveal">
+    <div>
+      <div class="day-badge">Day 2 · Wednesday 15 April</div>
+      <h2 class="day-title" style="color:var(--snow)">Val di Funes &amp; <em style="color:var(--mist)">Forestis</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="day-date">Bolzano → Val di Funes → Bressanone</div>
+  </div>
+
+  <div class="photo-grid photo-grid-2 reveal">
+    <div class="photo-card photo-card-wide">
+      <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=900&q=80" alt="Val di Funes">
+      <div class="photo-caption">Val di Funes — Santa Magdalena Panorama</div>
+    </div>
+    <div class="photo-card photo-card-wide">
+      <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=900&q=80" alt="Forestis">
+      <div class="photo-caption">Forestis Dolomites</div>
+    </div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-time">08:00</div>
+      <div>
+        <div class="timeline-label">Breakfast at Parkhotel Mondschein</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">09:00</div>
+      <div>
+        <div class="timeline-label">Drive to Val di Funes (~45 min)</div>
+        <div class="timeline-note">Head into the Funes valley, one of the most dramatic in the Dolomites</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">10:00</div>
+      <div>
+        <div class="timeline-label"><a class="place-link" href="https://maps.google.com/?q=Santa+Magdalena+Val+di+Funes+panorama+trail" target="_blank">Santa Magdalena Panorama Trail</a></div>
+        <div class="timeline-note">Easy 1–2 hour walk · No ice at this time of year · Views of the Odle/Geisler peaks · The iconic church-and-Dolomites shot</div>
+        <a class="map-link" href="https://maps.google.com/?q=Santa+Magdalena+Val+di+Funes" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">12:30</div>
+      <div>
+        <div class="timeline-label">Drive to Forestis (~30 min)</div>
+        <div class="timeline-note">Palmschoß 22, 39042 Bressanone BZ, Italy</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">13:00</div>
+      <div>
+        <div class="timeline-label">Check-in &amp; explore <a class="place-link" href="https://maps.app.goo.gl/ows4xeDGeV38i2jr5" target="_blank">Forestis</a></div>
+        <div class="timeline-note">Perched at 1,800m on the Plose plateau — extraordinary views over Bressanone valley</div>
+        <a class="map-link" href="https://maps.app.goo.gl/ows4xeDGeV38i2jr5" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">14:00</div>
+      <div>
+        <div class="timeline-label"><a class="place-link" href="https://www.forestis.it/en/spa" target="_blank">Spa, Steam &amp; Treatments at Forestis</a></div>
+        <div class="timeline-note">The Forest Spa — outdoor pool overlooking the Alps, Tyrolean sauna rituals, panoramic steam room</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">19:30</div>
+      <div>
+        <div class="timeline-label">Dinner at <a class="place-link" href="https://www.forestis.it/en/restaurant" target="_blank">Forestis Restaurant</a></div>
+        <div class="timeline-note">Fine dining with mountain produce · Reserve in advance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOTEL 2: FORESTIS -->
+<section class="section section-alt" style="padding-top: 60px">
+  <div class="hotel-card reveal">
+    <div class="hotel-image">
+      <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=900&q=85" alt="Forestis Dolomites">
+    </div>
+    <div class="hotel-info">
+      <div class="hotel-eyebrow">Nights 2 &amp; 3 · Mountain Spa</div>
+      <h3 class="hotel-name">Forestis Dolomites</h3>
+      <p class="hotel-address">Palmschoß 22, 39042 Bressanone BZ, Italy<br>Elevation: 1,800m above sea level</p>
+      <div class="hotel-detail"><strong>Spa</strong> Forest Spa, outdoor pool, saunas</div>
+      <div class="hotel-detail"><strong>Dining</strong> Fine dining restaurant on-site</div>
+      <div class="hotel-detail"><strong>Access</strong> Cable car or mountain road</div>
+      <div style="display:flex; gap: 12px; flex-wrap: wrap; margin-top: 24px;">
+        <a class="hotel-link" style="margin-top:0" href="https://www.forestis.it/en/" target="_blank">Hotel Website →</a>
+        <a class="hotel-link" style="margin-top:0" href="https://maps.app.goo.gl/ows4xeDGeV38i2jr5" target="_blank">View on Map →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 3 -->
+<section class="section" id="day3">
+  <div class="section-header reveal">
+    <div>
+      <div class="day-badge">Day 3 · Thursday 16 April</div>
+      <h2 class="day-title">Plose &amp; The Lakes Loop</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="day-date">Forestis · Lago di Braies · Lago di Dobbiaco</div>
+  </div>
+
+  <div class="photo-grid photo-grid-3 reveal">
+    <div class="photo-card photo-card-tall">
+      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80" alt="Lago di Braies">
+      <div class="photo-caption">Lago di Braies</div>
+    </div>
+    <div class="photo-card photo-card-med">
+      <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80" alt="Plose Mountain">
+      <div class="photo-caption">Plose Lower Forests</div>
+    </div>
+    <div class="photo-card photo-card-med">
+      <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80" alt="Lago di Landro">
+      <div class="photo-caption">Lago di Landro</div>
+    </div>
+  </div>
+
+  <div class="highlights reveal">
+    <div class="highlight-cell"><span class="highlight-icon">🌲</span><div class="highlight-text">Plose Forest Walks</div></div>
+    <div class="highlight-cell"><span class="highlight-icon">💎</span><div class="highlight-text">Lago di Braies</div></div>
+    <div class="highlight-cell"><span class="highlight-icon">🏔</span><div class="highlight-text">Lago di Landro</div></div>
+    <div class="highlight-cell"><span class="highlight-icon">🚣</span><div class="highlight-text">Lago di Dobbiaco</div></div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-time">08:00</div>
+      <div>
+        <div class="timeline-label">Breakfast at Forestis</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">10:30</div>
+      <div>
+        <div class="timeline-label">Plose Lower Forest Walks</div>
+        <div class="timeline-note">Gentle walks through the spruce forest below the Plose cable car base — wildflowers and birdsong in April</div>
+        <a class="map-link" href="https://maps.google.com/?q=Plose+mountain+Bressanone" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">14:00</div>
+      <div>
+        <div class="timeline-label">Lakes Loop — Three Iconic Lakes</div>
+        <div class="timeline-note">
+          <strong><a class="place-link" href="https://maps.google.com/?q=Lago+di+Dobbiaco+Dolomites" target="_blank">Lago di Dobbiaco</a></strong> — the quietest of the three, reedy shores &amp; mountain backdrop<br>
+          <strong><a class="place-link" href="https://maps.google.com/?q=Lago+di+Landro+Dolomites" target="_blank">Lago di Landro</a></strong> — long glacial lake with Cristallo massif reflections<br>
+          <strong><a class="place-link" href="https://maps.google.com/?q=Lago+di+Braies+Dolomites" target="_blank">Lago di Braies</a></strong> — the emerald jewel · rowboats, turquoise water, iconic boathouse
+        </div>
+        <a class="map-link" href="https://maps.google.com/?q=Lago+di+Braies+Dolomites" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Lago di Braies on Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">19:30</div>
+      <div>
+        <div class="timeline-label">Back to Forestis — Dinner &amp; Spa</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 4 -->
+<section class="section section-dark" id="day4">
+  <div class="section-header reveal">
+    <div>
+      <div class="day-badge">Day 4 · Friday 17 April</div>
+      <h2 class="day-title" style="color:var(--snow)">The Mountain <em style="color:var(--mist)">Passes</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="day-date">Forestis → Val Gardena → Austria</div>
+  </div>
+
+  <div class="photo-grid photo-grid-2 reveal">
+    <div class="photo-card photo-card-wide">
+      <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&q=80" alt="Val Gardena">
+      <div class="photo-caption">Val Gardena — Dolomite Passes</div>
+    </div>
+    <div class="photo-card photo-card-wide">
+      <img src="https://images.unsplash.com/photo-1520962922320-2038eebab146?w=900&q=80" alt="Obergurgl">
+      <div class="photo-caption">Ötztal — Approaching Obergurgl</div>
+    </div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-time">08:00</div>
+      <div>
+        <div class="timeline-label">Breakfast at Forestis</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">10:30</div>
+      <div>
+        <div class="timeline-label">Scenic Drive to Dolomitenhütte</div>
+        <div class="timeline-note">A spectacular route through some of the finest mountain scenery in the Alps</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">~11:00</div>
+      <div>
+        <div class="timeline-label">Stop 1 · Val Gardena</div>
+        <div class="timeline-note">The valley of woodcarvers — charming Ladin villages, dramatic rock faces on all sides</div>
+        <a class="map-link" href="https://maps.google.com/?q=Val+Gardena+Dolomites+Italy" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">~11:45</div>
+      <div>
+        <div class="timeline-label">Stop 2 · Passo Gardena (2,121m)</div>
+        <div class="timeline-note">One of the Sella Ronda passes — sweeping views of the Sella massif, Cir peaks, and Puez Group</div>
+        <a class="map-link" href="https://maps.google.com/?q=Passo+Gardena+Dolomites" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">~12:30</div>
+      <div>
+        <div class="timeline-label">Stop 3 · St. Ulrich (Ortisei)</div>
+        <div class="timeline-note">Charming Ladin town · famous woodcarving tradition · grab lunch here if needed</div>
+        <a class="map-link" href="https://maps.google.com/?q=Ortisei+St+Ulrich+Val+Gardena" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">~14:00</div>
+      <div>
+        <div class="timeline-label">Stop 4 · Bressanone (Brixen)</div>
+        <div class="timeline-note">Cathedral city — beautiful baroque bishop's palace and arcaded streets</div>
+        <a class="map-link" href="https://maps.google.com/?q=Bressanone+Brixen+Italy" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">16:00</div>
+      <div>
+        <div class="timeline-label">Arrive <a class="place-link" href="https://www.dolomitenresort.at/en/dolomitenhuette/" target="_blank">Dolomitenhütte</a> · Obergurgl</div>
+        <div class="timeline-note">Check in and settle in — the highest parish in Austria, at 1,930m</div>
+        <a class="map-link" href="https://www.dolomitenresort.at/en/dolomitenhuette/" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Hotel Website
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">19:30</div>
+      <div>
+        <div class="timeline-label">Dinner at Dolomitenhütte &amp; Early Night</div>
+        <div class="timeline-note">Up early tomorrow — the birds' nest awaits!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOTEL 3: DOLOMITENHÜTTE -->
+<section class="section section-alt" style="padding-top: 60px">
+  <div class="hotel-card reveal">
+    <div class="hotel-image">
+      <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=900&q=85" alt="Dolomitenhütte Obergurgl">
+    </div>
+    <div class="hotel-info">
+      <div class="hotel-eyebrow">Nights 4 &amp; 5 · Alpine Retreat</div>
+      <h3 class="hotel-name">Dolomitenhütte</h3>
+      <p class="hotel-address">Obergurgl, Ötztal, Austria<br>Elevation: 1,930m — Austria's highest parish</p>
+      <div class="hotel-detail"><strong>Setting</strong> Panoramic mountain views</div>
+      <div class="hotel-detail"><strong>Feature</strong> The Bird's Nest room</div>
+      <div class="hotel-detail"><strong>Dining</strong> Hotel restaurant — dinner &amp; breakfast</div>
+      <a class="hotel-link" href="https://www.dolomitenresort.at/en/dolomitenhuette/" target="_blank">Hotel Website →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 5 -->
+<section class="section" id="day5">
+  <div class="section-header reveal">
+    <div>
+      <div class="day-badge">Day 5 · Saturday 18 April</div>
+      <h2 class="day-title">Obergurgl &amp; Hochgurgl</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="day-date">Ötztal Valley · Austria</div>
+  </div>
+
+  <div class="photo-grid photo-grid-2 reveal">
+    <div class="photo-card photo-card-wide">
+      <img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=900&q=80" alt="Obergurgl valley">
+      <div class="photo-caption">Ötztal Valley Trails</div>
+    </div>
+    <div class="photo-card photo-card-wide">
+      <img src="https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=900&q=80" alt="Alpine panorama">
+      <div class="photo-caption">Hochgurgl Panorama Road</div>
+    </div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-time">08:00</div>
+      <div>
+        <div class="timeline-label">Breakfast at Hotel</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">10:30</div>
+      <div>
+        <div class="timeline-label"><a class="place-link" href="https://maps.google.com/?q=Obergurgl+valley+trail+Ötztal+Austria" target="_blank">Obergurgl Valley Trail</a></div>
+        <div class="timeline-note">Beautiful spring walking through the upper Ötztal — still-snowy peaks, wildflower meadows starting to bloom at lower altitudes</div>
+        <a class="map-link" href="https://maps.google.com/?q=Obergurgl+hiking+Ötztal+Austria" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">15:00</div>
+      <div>
+        <div class="timeline-label">Drive up the Panorama Road to <a class="place-link" href="https://maps.google.com/?q=Hochgurgl+Austria+Ötztal" target="_blank">Hochgurgl</a></div>
+        <div class="timeline-note">Hairpin bends to 2,150m — one of the most dramatic road drives in the Alps · Lower Hochgurgl walking trails</div>
+        <a class="map-link" href="https://maps.google.com/?q=Hochgurgl+Austria" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">19:30</div>
+      <div>
+        <div class="timeline-label">Dinner at Dolomitenhütte</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAY 6 -->
+<section class="section section-dark" id="day6">
+  <div class="section-header reveal">
+    <div>
+      <div class="day-badge">Day 6 · Sunday 19 April</div>
+      <h2 class="day-title" style="color:var(--snow)">The Long Road <em style="color:var(--mist)">Home</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="day-date">Obergurgl → Merano → Trento → Verona</div>
+  </div>
+
+  <div class="photo-grid photo-grid-3 reveal">
+    <div class="photo-card photo-card-tall">
+      <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80" alt="Merano">
+      <div class="photo-caption">Merano</div>
+    </div>
+    <div class="photo-card photo-card-med">
+      <img src="https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=600&q=80" alt="Trento">
+      <div class="photo-caption">Trento</div>
+    </div>
+    <div class="photo-card photo-card-med">
+      <img src="https://images.unsplash.com/photo-1582654291086-f0e4d4fd9551?w=600&q=80" alt="Verona">
+      <div class="photo-caption">Verona</div>
+    </div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-time">08:00</div>
+      <div>
+        <div class="timeline-label">Breakfast at Hotel &amp; Check-out</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">10:30</div>
+      <div>
+        <div class="timeline-label">Depart — Begin the drive south</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">~12:00</div>
+      <div>
+        <div class="timeline-label">Stop · <a class="place-link" href="https://maps.google.com/?q=Merano+Tappeinerweg+promenade+South+Tyrol" target="_blank">Merano</a></div>
+        <div class="timeline-note">One of South Tyrol's most elegant towns — the Tappeinerweg promenade, famous Kurhaus, and thermal baths. Beautiful palm-tree streets in spring.</div>
+        <a class="map-link" href="https://maps.google.com/?q=Merano+South+Tyrol+Italy" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">~13:00</div>
+      <div>
+        <div class="timeline-label">Lunch · <a class="place-link" href="https://www.vincenzo-degasperi.it/en" target="_blank">Johnson &amp; Dipoli</a>, Egna</div>
+        <div class="timeline-note">Michelin-listed wine bar &amp; restaurant in Egna (Neumarkt) — 200+ South Tyrolean wines, superb seasonal cuisine · <a class="place-link" href="https://maps.google.com/?q=Johnson+Dipoli+Via+Andreas+Hofer+3+Egna" target="_blank">Via Andreas Hofer 3</a> · Book ahead</div>
+        <a class="map-link" href="https://maps.google.com/?q=Johnson+Dipoli+Via+Andreas+Hofer+3+Egna+Neumarkt+South+Tyrol" target="_blank">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Open in Maps
+        </a>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">15:00</div>
+      <div>
+        <div class="timeline-label">Arrive <a class="place-link" href="https://maps.google.com/?q=Verona+city+centre+Italy" target="_blank">Verona</a> — Final afternoon</div>
+        <div class="timeline-note">Drop the car at VRN airport, then explore the old city — everything below is walkable within 15 minutes</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">15:30</div>
+      <div>
+        <div class="timeline-label"><a class="place-link" href="https://maps.google.com/?q=Arena+di+Verona+Piazza+Bra" target="_blank">Arena di Verona</a></div>
+        <div class="timeline-note">The 1st-century Roman amphitheatre — one of the best-preserved in the world · Piazza Brà · Worth a walk around the outside even if not going in</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">16:00</div>
+      <div>
+        <div class="timeline-label"><a class="place-link" href="https://maps.google.com/?q=Piazza+delle+Erbe+Verona" target="_blank">Piazza delle Erbe</a></div>
+        <div class="timeline-note">Verona's main market square — surrounded by frescoed palaces, a Roman column and the Gardello tower · Perfect for an aperitivo stop</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">16:30</div>
+      <div>
+        <div class="timeline-label"><a class="place-link" href="https://maps.google.com/?q=Juliet+balcony+Casa+di+Giulietta+Verona" target="_blank">Juliet's Balcony</a></div>
+        <div class="timeline-note">Casa di Giulietta · Via Cappello 23 · The famous courtyard and balcony — usually busy but a quick stop</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">17:00</div>
+      <div>
+        <div class="timeline-label"><a class="place-link" href="https://maps.google.com/?q=Castelvecchio+Verona" target="_blank">Castelvecchio</a></div>
+        <div class="timeline-note">14th-century Scaligeri castle on the Adige river · Beautiful bridge and riverside walk · Museum inside if time allows</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-time">18:30</div>
+      <div>
+        <div class="timeline-label">Aperitivo &amp; farewell dinner in Verona</div>
+        <div class="timeline-note">Head back towards <a class="place-link" href="https://maps.google.com/?q=Piazza+delle+Erbe+Verona+restaurants" target="_blank">Piazza delle Erbe</a> or <a class="place-link" href="https://maps.google.com/?q=Piazza+dei+Signori+Verona" target="_blank">Piazza dei Signori</a> for a final evening meal · Try local Soave or Valpolicella wines</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW MAP BANNER -->
+<a class="route-banner" href="https://maps.google.com/?q=Verona+Italy" target="_blank">
+  <div>
+    <div class="route-banner-label">Full Route</div>
+    <div class="route-banner-text">Verona → Lake Garda → Bolzano → Val di Funes → Forestis → Lakes Loop → Val Gardena → Obergurgl → Merano → Verona</div>
+  </div>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3d2e1e" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="title">Buon viaggio</div>
+  <p>Dolomites &amp; Austria · 14–19 April 2026 · Fran &amp; Rauikau</p>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+
+  // Hero animation delay
+  document.querySelector('.hero-content').style.animationDelay = '0.3s';
+
+  // Info strip stagger
+  document.querySelectorAll('.info-cell').forEach((el, i) => {
+    el.style.animationDelay = `${0.5 + i * 0.12}s`;
+    el.style.animationFillMode = 'forwards';
+  });
+</script>
+</body>
+</html>
